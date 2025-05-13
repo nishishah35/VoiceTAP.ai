@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceTAP</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    /* Background */
+    body {
+      background: linear-gradient(135deg, #6b00b6, #440080);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background: url("assets/img/bg2.jpg");
+      
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+    .navbar a, .navbar a:focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 10px 30px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+
+    .navbar a i, .navbar a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+    }
+
+    .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+      color: #47b2e4;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .login-btn {
+      width: 100%;
+      max-width: 130px;
+      margin-left: 20px;
+      
+      align-items: center;
+      padding: 10px 15px;
+      background: #0061ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar .login-btn:hover {
+      background: #fff;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropbtn {
+      font-size: 20px; /* Adjust size of the symbol */
+      line-height: 20px; /* Center the symbol vertically */
+      padding: 14px 16px; /* Match padding with other links */
+      color: white;
+      text-decoration:none;
+    }
+
+
+    /* Main container */
+    .container {
+      margin-top: 120px; /* Adjusted for fixed navbar */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .title-card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 40px;
+      width: 90%;
+      max-width: 600px;
+      height: 90%;
+      max-height: 1000px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .title-card h2 {
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .title-card p {
+      font-size: 18px;
+      color: #ddd;
+      margin-top: 10px;
+    }
+
+    .title-card .start-btn {
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .title-card .start-btn:hover {
+      background-color: #ff47a1;
+    }
+
+    #result {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      color: #333;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      background-color: #f4f4f4;
+    }
+
+    #result:focus {
+      outline: none;
+    }
+    /* Footer */
+    #footer {
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      background: rgba(40, 35, 35, 0.7);
+      width: 1600px;
+      margin: 250px;
+      
+   
+    }
+   
+    #footer-column{
+      width: 50%;
+      flex:1;
+      margin: 0 20px;
+      
+    }
+
+    #footer h4 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #e0e0e0;
+     
+      padding-top: 0px;
+    }
+    #footer p {
+      font-size: 14px;
+      line-height: 24px;
+      margin-bottom: 0;
+    }
+    #footer .social-links a {
+      font-size: 18px;
+      display: inline-block;
+      background: #3498db;
+      color: #fff;
+      line-height: 1;
+      padding: 8px 0;
+      margin-right: 4px;
+      border-radius: 50%;
+      text-align: center;
+      width: 36px;
+      height: 36px;
+      transition: 0.3s;
+    }
+    #footer .social-links a:hover {
+      background: #2980b9;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #footer .footer-bottom {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: #fff;
+    }
+
+    #footer .copyright {
+      float: left;
+    }
+
+    #footer .credits {
+      float: right;
+      padding-left: .5rem;
+      font-size: 13px;
+      color:#f9f9f9
+    }
+
+    #footer .credits a {
+      color: #f9f9f9;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      #footer .footer-bottom {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      #footer .copyright, #footer .credits {
+        text-align: center;
+        float: none;
+      }
+      #footer .credits {
+        padding-top: 4px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>VoiceTAP</h1>
+    <nav>
+      <ul>
+        <li><a href="index(2).html">Home</a></li>
+        <li><a href="cta.html">CTA</a></li>
+        <li><a href="features(1).html">Our Features</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="login.html"class="login-btn">Login/Register</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">⋮</a>
+          <div class="dropdown-content">
+              <a href="portfolio.html">Portfolio</a>
+              <a href="team.html">Team</a>
+              <a href="contact.html">Contact</a>
+              <a href="about-us.html">About us </a>
+          </div>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="title-card">
+      <h2>🎤 Speech to Text 📝 </h2>
+      <h2>Translation</h2>
+      <p>Speak and watch your words come to life!</p>
+      <button class="start-btn" onclick="startListening()">Start Listening</button>
+      <p><textarea id="result" placeholder="Did we heard you correctly? Find it out ..." rows="6" readonly></textarea></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-column">
+
+          <h3>ARSHA</h3>
+          <p>A108 Adam Street<br>New York, NY 535022<br>United States</p>
+          <p><strong>Phone:</strong> +1 5589 55488 55<br><strong>Email:</strong> info@example.com</p>
+        </div>
+
+        <!-- Useful Links -->
+        <div class="footer-column">
+          <h4>Useful Links</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="#" style="color: #007bff; text-decoration: none;">Home</a></li>
+            <li><a href="#" style="color: #007bff; text-decoration: none;">About us</a></li>
+            <li><a href="#" style="color: #007bff; text-decoration: none;">Services</a></li>
+            <li><a href="#" style="color: #007bff; text-decoration: none;">Terms of service</a></li>
+            <li><a href="#" style="color: #007bff; text-decoration: none;">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="footer-column">
+
+          <h4>Our Social Networks</h4>
+          <p>Access us on these social media  platforms</p>
+          <div>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/50/007bff/twitter.png" alt="Twitter" width="25"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/50/007bff/facebook.png" alt="Facebook" width="25"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/50/007bff/instagram.png" alt="Instagram" width="25"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/50/007bff/skype.png" alt="Skype" width="25"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/50/007bff/linkedin.png" alt="LinkedIn" width="25"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Check if the browser supports Speech Recognition
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (window.SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      // Start listening function
+      function startListening() {
+        document.querySelector(".start-btn").textContent = "Listening...";
+        document.querySelector(".start-btn").disabled = true;
+        recognition.start();
+      }
+
+      // Event when speech recognition result is returned
+      recognition.addEventListener("result", (event) => {
+        const transcript = Array.from(event.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join("");
+      
+      document.getElementById("result").textContent = transcript;
+      });
+
+      // Event when recognition stops
+      recognition.addEventListener("end", () => {
+        document.querySelector(".start-btn").textContent = "Start Listening";
+        document.querySelector(".start-btn").disabled = false;
+      });
+
+    } 
+    else {
+      alert("Sorry, your browser does not support speech recognition.");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitch Determination</title>
+<style>
+  /* Global Styling */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url("assets/img/bg2.jpg");
+    background-size: 100vw 50px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-color: rgb(127, 241, 203);
+    
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#ffffff;
+ 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo img {
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .navbar-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .navbar-links a:hover {
+    color: #007bff;
+  }
+  .navbar .login-btn {
+    width: 100%;
+    max-width: 130px;
+    margin-left: 20px;
+    
+    align-items: center;
+    padding: 10px 15px;
+    background: #0061ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar .login-btn:hover {
+    background: #fff;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropbtn {
+    font-size: 20px; /* Adjust size of the symbol */
+    line-height: 20px; /* Center the symbol vertically */
+    padding: 14px 16px; /* Match padding with other links */
+    color: white;
+    text-decoration: none;
+  }
+
+  .main-content
+  .container {
+    
+    text-align: center;
+    width: 500px;
+    
+    margin-top: 100px ;
+    margin-left: 30vw;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease;
+  }
+
+
+
+  /* Header */
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  /* Button Styling */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    font-size: 1rem;
+    color: #fff;
+    
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #5848c2;
+  }
+
+  .output-box {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fc;
+    border: 1px solid #000;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1rem;
+    min-height: 50px;
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2f3e46;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-top: 210px;
+    margin-bottom: -50px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-logo">
+    <img src="assets/img/logo.jpeg" alt="VoiceTAP.ai Logo">
+    <span style="font-size: 1.2rem; font-weight: bold;">VoiceTAP</span>
+  </div>
+  <div class="navbar-links">
+    <a href="index(2).html">Home</a>
+    <a href="cta.html">CTA</a>
+    <li class="dropdown">
+      <a class="dropbtn" href="features(1).html">Our Features</a>
+  
+      <div class="dropdown-content">
+          <a href="translate.html">Translate</a>
+          <a href="analyze.html">Analyze</a>
+          <a href="Predict.html">Predict</a>            
+      </div>
+    </li>
+    <a href="about.html">About Us</a>
+    <a href="team.html">Team</a>
+    <a href="login.html" class="login-btn">Login/Register</a>
+    <li class="dropdown">
+      <a class="dropbtn">⋮</a>
+      <div class="dropdown-content">
+        <a href="portfolio.html">Portfolio</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="about-us.html">About us </a>
+      </div>
+    </li>
+
+
+  </div>
+</div>
+<div class="main-content">
+
+<div class="container">
+  
+  <h2>Pitch Detection</h2>
+  <p>Record your voice to analyze its pitch characteristics and discover new insights!</p>
+
+  <!-- Voice Recording Button -->
+  <button class="btn" onclick="startRecording()">🎙️ Start Recording</button>
+  <button class="btn" onclick="stopRecording()">⏹️ Stop Recording</button>
+  <button class="btn" onclick="analyzeFrequency()">📊 Analyze</button>
+
+  <!-- Output Display Box -->
+  <div class="output-box" id="output">Your pitch analysis results will appear here.</div>
+
+  <!-- Action Buttons -->
+  <button class="btn" onclick="UploadAudio()">➕ Upload Audio <br>from Computer</button>
+  <button class="btn" onclick="copyOutput()">📋 Copy</button>
+  <button class="btn" onclick="shareOutput()">🔗 Share</button>
+  <button class="btn" onclick="saveOutput()">💾 Save</button>
+  
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  © 2024 VoiceTAP.ai. All rights reserved.
+</div>
+
+<script>
+  let recording = false;
+  let analysisResult = "";
+
+  // Dummy function to simulate recording start
+  function startRecording() {
+    recording = true;
+    document.getElementById('output').textContent = "Recording in progress...";
+  }
+
+  // Dummy function to simulate recording stop
+  function stopRecording() {
+    if (recording) {
+      recording = false;
+      document.getElementById('output').textContent = "Recording stopped. Ready to analyze.";
+    }
+  }
+
+  // Dummy function to simulate frequency analysis
+  function analyzeFrequency() {
+    if (!recording) {
+      analysisResult = "Frequency Range: 85Hz - 255Hz\nAverage Frequency: 120Hz\nHarmonics: High";
+      document.getElementById('output').textContent = analysisResult;
+    } else {
+      document.getElementById('output').textContent = "Please stop recording before analyzing.";
+    }
+  }
+
+  function UploadAudio() {
+    // Create a new file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'audio/*';
+
+    // Trigger the file input element click event
+    fileInput.click();
+
+    // Handle the file selection event
+    fileInput.onchange = function() {
+      // Get the selected file
+      const file = this.files[0];
+
+      // Do something with the file, such as uploading it to a server
+      // ...
+    };
+  }
+
+  // Copy output to clipboard
+  function copyOutput() {
+    navigator.clipboard.writeText(analysisResult).then(() => {
+      alert("Analysis result copied to clipboard!");
+    });
+  }
+
+  // Share output (dummy function)
+  function shareOutput() {
+    alert("Share feature is under development.");
+  }
+
+  // Save output (dummy function)
+  function saveOutput() {
+    const blob = new Blob([analysisResult], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Frequency_Analysis_Result.txt";
+    link.click();
+    URL.revokeObjectURL(url);
+    alert("Analysis result saved as a text file.");
+  }
+</script>
+
+</body>
+</html>

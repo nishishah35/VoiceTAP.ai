@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Speech Converter</title>
+  <style>
+    
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: url("assets/img/bg2.jpg");
+    
+    }
+    .navbar {
+      width: 100%;
+      background: url("assets/img/bg2.jpg");
+      
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+    .navbar a, .navbar a:focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 10px 30px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+
+    .navbar a i, .navbar a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+    }
+
+    .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+      color: #47b2e4;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .login-btn {
+      width: 100%;
+      max-width: 110px;
+      margin-left: 20px;
+      
+      align-items: center;
+      padding: 10px 15px;
+      background: #0061ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar .login-btn:hover {
+      background: #fff;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropbtn {
+      font-size: 20px; /* Adjust size of the symbol */
+      line-height: 20px; /* Center the symbol vertically */
+      padding: 14px 16px; /* Match padding with other links */
+      color: white;
+      text-decoration:none;
+    }
+
+    .container {
+      background-color: #ecea77;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.2em;
+      color: #000;
+    }
+
+    .input-area textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border: 5px
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>VoiceTAP</h1>
+    <nav>
+      <ul>
+        <li><a href="index(2).html">Home</a></li>
+        <li><a href="cta.html">CTA</a></li>
+        <li><a href="features(1).html">Our Features</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="login.html"class="login-btn">Login/Register</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">⋮</a>
+          <div class="dropdown-content">
+              <a href="portfolio.html">Portfolio</a>
+              <a href="team.html">Team</a>
+              <a href="contact.html">Contact</a>
+              <a href="about-us.html">About us </a>
+          </div>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="header">
+      <h1>📝 Text to Speech 🎤</h1>
+      <h1>Translation</h1>
+      <p>Write your thoughts and let us speak them out!</p>
+
+    </div>
+    <div class="input-area">
+      <textarea id="textInput" placeholder="Enter your text here"></textarea>
+      <button id="convertButton">Convert to Speech</button>
+    </div>
+    <div class="output-area">
+      <p id="outputText">Did we get it right?</p>
+
+      <audio id="audioOutput" controls></audio>
+    </div>
+  </div>
+  <script>
+    const textInput = document.getElementById('textInput');
+    const convertButton = document.getElementById('convertButton');
+    const outputText = document.getElementById('outputText');
+    const audioOutput = document.getElementById('audioOutput');
+
+    convertButton.addEventListener('click', () => {
+      const text = textInput.value;
+
+      // Check if text is empty
+      if (text === "") {
+        outputText.textContent = "Please enter some text.";
+        return;
+      }
+
+      // Create a new SpeechSynthesisUtterance object
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Set voice properties (optional)
+      // utterance.voice = voices[0]; // Select a voice from the available voices
+      // utterance.rate = 1.0; // Adjust speech rate (default 1)
+      // utterance.pitch = 1.0; // Adjust speech pitch (default 1)
+
+      // Speak the text
+      window.speechSynthesis.speak(utterance);
+
+      // Update output text to reflect the spoken text
+      outputText.textContent = text;
+
+      // Update the audio source
+      audioOutput.src = URL.createObjectURL(new Blob([text], { type: 'text/plain' }));
+    });
+
+    // Get available voices (optional)
+    window.speechSynthesis.onvoiceschanged = () => {
+    const voices = window.speechSynthesis.getVoices();
+    // console.log(voices); // Log available voices to the console
+    };
+  </script>
+</body>
+</html>

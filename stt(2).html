@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Speech to Text Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        #output {
+            border: 2px solid #007bff;
+            min-height: 200px;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .btn-custom {
+            margin-right: 10px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Speech to Text Pro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Transform Your Voice into Text!</h1>
+        <p>Experience seamless speech recognition with our professional tool.</p>
+    </header>
+
+    <div class="container text-center">
+        <button id="start-btn" class="btn btn-success btn-lg btn-custom">Start Listening</button>
+        <button id="stop-btn" class="btn btn-danger btn-lg btn-custom" disabled>Stop Listening</button>
+
+        <div id="output" contenteditable="true" placeholder="Your transcribed text will appear here..."></div>
+
+        <div class="mt-3">
+            <button id="share-btn" class="btn btn-info btn-lg btn-custom">Share</button>
+            <button id="new-btn" class="btn btn-secondary btn-lg btn-custom">New</button>
+            <button id="copy-btn" class="btn btn-warning btn-lg btn-custom">Copy</button>
+            <input type="file" id="upload-btn" class="btn btn-primary btn-lg" accept=".mp3,.wav,.ogg">
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Speech to Text Converter. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Speech Recognition Logic -->
+    <script>
+        const output = document.getElementById('output');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        
+        let recognition;
+
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.interimResults = true;
+
+            recognition.onresult = (event) => {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                output.innerText = transcript;
+            };
+
+            recognition.onend = () => {
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            };
+        } else {
+            alert("Speech recognition not supported in this browser.");
+        }
+
+        startBtn.addEventListener('click', () => {
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            recognition.start();
+        });
+
+        stopBtn.addEventListener('click', () => {
+            recognition.stop();
+        });
+
+        document.getElementById('share-btn').addEventListener('click', () => {
+            const textToShare = output.innerText.trim();
+            if (textToShare) {
+                navigator.share({ text: textToShare })
+                    .then(() => console.log('Shared successfully'))
+                    .catch(console.error);
+            } else {
+                alert("Nothing to share!");
+            }
+        });
+
+        document.getElementById('new-btn').addEventListener('click', () => {
+            output.innerText = '';
+        });
+
+        document.getElementById('copy-btn').addEventListener('click', () => {
+            navigator.clipboard.writeText(output.innerText)
+                .then(() => alert('Text copied to clipboard!'))
+                .catch(err => console.error('Could not copy text: ', err));
+        });
+
+        document.getElementById('upload-btn').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    output.innerText = e.target.result; // This assumes the uploaded file is text; modify as needed for audio processing.
+                };
+                reader.readAsText(file); // Change this if you want to handle audio files differently.
+            }
+        });
+    </script>
+
+</body>
+</html>

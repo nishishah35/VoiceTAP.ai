@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | VoiceTAP.ai</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            background: linear-gradient(to right, #1c1c3c, #34345b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #f4f4f9;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-align: center;
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* Portfolio section container */
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Individual project card styling */
+        .project-card {
+            background: #29294d;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Project image */
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        /* Card content */
+        .project-card .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #c4c4e1;
+        }
+
+        /* Project overlay with animation on hover */
+        .project-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(29, 29, 47, 0.9);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay p {
+            font-size: 1rem;
+            color: #ffd700;
+            line-height: 1.5;
+        }
+
+        /* Button styling */
+        .project-card .overlay a {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #1c1c3c;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .project-card .overlay a:hover {
+            background-color: #ffac33;
+        }
+
+        /* Responsive styling for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .overlay p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Our Portfolio</h1>
+    <section class="portfolio-container">
+        <!-- Project 1 -->
+        <div class="project-card">
+            <img src="project1.jpg" alt="Project 1">
+            <div class="content">
+                <h3>Real-Time Voice Recognition</h3>
+                <p>Efficient, accurate, and adaptable voice recognition technology.</p>
+            </div>
+            <div class="overlay">
+                <h3>Real-Time Voice Recognition</h3>
+                <p>Our real-time voice recognition system is optimized for high-speed and precision, enabling quick responses and a seamless user experience.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <img src="project2.jpg" alt="Project 2">
+            <div class="content">
+                <h3>Voice Gender & Age Prediction</h3>
+                <p>Predicting user demographics for personalized experiences.</p>
+            </div>
+            <div class="overlay">
+                <h3>Voice Gender & Age Prediction</h3>
+                <p>With advanced ML models, our system provides accurate gender and age predictions, helping tailor services to individual needs.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+            <img src="project3.jpg" alt="Project 3">
+            <div class="content">
+                <h3>Text-to-Speech Conversion</h3>
+                <p>Smooth and natural-sounding text-to-speech outputs.</p>
+            </div>
+            <div class="overlay">
+                <h3>Text-to-Speech Conversion</h3>
+                <p>Our TTS module transforms text into lifelike speech, making communication natural and accessible for diverse audiences.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+            <img src="project4.jpg" alt="Project 4">
+            <div class="content">
+                <h3>Voice Analysis</h3>
+                <p>Analyzing pitch, tone, and volume for detailed insights.</p>
+            </div>
+            <div class="overlay">
+                <h3>Voice Analysis</h3>
+                <p>Our analysis tool evaluates voice features, providing feedback on pitch, tone, and volume to enhance user experience and customization.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+            <img src="project5.jpg" alt="Project 5">
+            <div class="content">
+                <h3>Multilingual Support</h3>
+                <p>Supporting multiple languages for a global reach.</p>
+            </div>
+            <div class="overlay">
+                <h3>Multilingual Support</h3>
+                <p>Our multilingual support allows users from diverse backgrounds to access and benefit from our technology without language barriers.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

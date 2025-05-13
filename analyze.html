@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoiceTAP.ai</title>
+<style>
+  /* Global Styling */
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url("assets/img/bg2.jpg");
+    background-size: 100vw 40vh;
+    background-position: top;
+    background-repeat: no-repeat;
+    
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#ffffff;
+    padding: 10px 20px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo img {
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .navbar-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .navbar-links a:hover {
+    color: #007bff;
+  }
+  .navbar .login-btn {
+    width: 100%;
+    max-width: 130px;
+    margin-left: 20px;
+    
+    align-items: center;
+    padding: 10px 15px;
+    background: #0061ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar .login-btn:hover {
+    background: #fff;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropbtn {
+    font-size: 20px; /* Adjust size of the symbol */
+    line-height: 20px; /* Center the symbol vertically */
+    padding: 14px 16px; /* Match padding with other links */
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Main Content */
+  @keyframes slideFadeOut {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+      color: #555;
+    }
+    50% {
+      color: white;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      color: #fff;
+    }
+  }
+
+  .main-content {
+    text-align: center;
+    padding: 40px 20px;
+    
+  }
+
+  .main-content h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    animation: slideFadeOut 0.5s ease-in forwards;
+  }
+ 
+  .feature-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 20vh;
+  }
+
+  .feature-card {
+    width: 250px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideFadeIn 2.0s ease-out backwards;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+  }
+
+  @keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f1f1f1;
+  }
+
+  .feature-icon {
+    font-size: 40px;
+    color: #6c63ff;
+    margin-bottom: 10px;
+    zoom:  3;
+
+  }
+
+  .feature-title {
+    font-weight: bold;
+    margin-top: 2px;
+    font-size: 1.2rem;
+  }
+
+  .feature-description {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2f3e46;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-top: 210px;
+    margin-bottom: -50px;
+  }
+</style>
+</head>
+<body>
+  
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-logo">
+    <img src="assets/img/logo.jpeg" alt="VoiceTAP.ai Logo">
+    <span style="font-size: 1.2rem; font-weight: bold;">VoiceTAP</span>
+  </div>
+  <div class="navbar-links">
+    <a href="index(2).html">Home</a>
+    <a href="cta.html">CTA</a>
+    <a href="features(1).html">Our Features</a>
+    <a href="about.html">About Us</a>
+    <a href="team.html">Team</a>
+    <a href="login.html" class="login-btn">Login/Register</a>
+    <li class="dropdown">
+      <a class="dropbtn">⋮</a>
+      <div class="dropdown-content">
+        <a href="portfolio.html">Portfolio</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="about-us.html">About us </a>
+      </div>
+    </li>
+
+
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h2>Analyze Your Voice Like Never Before.</h2>
+  <p style="font-size: 20px; animation: slideFadeOut 1.0s ease-in forwards;"> Unlock insights into your voice’s unique characteristics.<br> 
+    Our voice analysis tool dives deep into frequency, pitch, tone, and more.
+  </p>
+
+
+  <div class="feature-container">
+    <!-- Translate Feature -->
+    <a href="freq.html" class="feature-card">
+      <div class="feature-icon"><img src="assets/img/freq.png" alt="Instant Voice Translation" style="width: 40px; height: 40px;"></div>
+      <div class="feature-title">Frequency Analysis</div>
+      <div class="feature-description">Understand the core frequency range of your voice and its variations.</div>
+    </a>
+
+    <!-- Analysis Feature -->
+    <a href="pitch.html" class="feature-card">
+      <div class="feature-icon"><img src="assets/img/pitch.jfif" alt="Deep Voice Analysis" style="width: 40px; height: 40px;"></div>
+      <div class="feature-title">Pitch Detection</div>
+      <div class="feature-description">Discover the pitch and pitch stability in your voice.</div>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  © 2024 VoiceTAP.ai. All rights reserved.
+</div>
+
+</body>
+</html>

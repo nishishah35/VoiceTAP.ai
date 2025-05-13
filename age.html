@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gender Prediction Page</title>
+<style>
+  /* Global Styling */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: center;
+    color:#ffffff;
+    background-image: url("assets/img/bg2.jpg");
+    background-size: 100vw 50px;
+    background-position: top;
+    background-repeat: no-repeat;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo img {
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .navbar-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .navbar-links a:hover {
+    color: #007bff;
+  }
+  .navbar .login-btn {
+    width: 100%;
+    max-width: 130px;
+    margin-left: 20px;   
+    align-items: center;
+    padding: 10px 15px;
+    background: #0061ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar .login-btn:hover {
+    background: #fff;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropbtn {
+    font-size: 20px; /* Adjust size of the symbol */
+    line-height: 20px; /* Center the symbol vertically */
+    padding: 14px 16px; /* Match padding with other links */
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Main Content */
+  .container {
+        width: 650px;
+        margin-top: 100px ;
+        margin-left: 30vw;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .container h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .container p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    /* Button styles */
+    .button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        margin: 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .record-button {
+        background: #28a745;
+    }
+    .stop-button {
+        background: #1d2671;
+    }
+    .upload-button {
+        background: #17a2b8;
+    }
+
+    .button:hover {
+        opacity: 0.8;
+    }
+
+        /* Voice feedback text */
+        .feedback {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Result display */
+        .result {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2f3e46;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-top: 210px;
+    margin-bottom: -10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-logo">
+    <img src="assets/img/logo.jpeg" alt="VoiceTAP.ai Logo">
+    <span style="font-size: 1.2rem; font-weight: bold;">VoiceTAP</span>
+  </div>
+  <div class="navbar-links">
+    <a href="index(2).html">Home</a>
+    <a href="cta.html">CTA</a>
+    <li class="dropdown">
+        <a class="dropbtn" href="features(1).html">Our Features</a>
+    
+        <div class="dropdown-content">
+            <a href="translate.html">Translate</a>
+            <a href="analyze.html">Analyze</a>
+            <a href="Predict.html">Predict</a>            
+        </div>
+    </li>
+    <a href="about.html">About Us</a>
+    <a href="team.html">Team</a>
+    <a href="login.html" class="login-btn">Login/Register</a>
+    <li class="dropdown">
+      <a class="dropbtn">⋮</a>
+      <div class="dropdown-content">
+        <a href="portfolio.html">Portfolio</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="about-us.html">About us </a>
+      </div>
+    </li>
+
+
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <h1>Predict Age from Voice</h1>
+    <p>Have you seen anyone predicting a person's age just from audio?<br> 
+        No?.... Test making age prediction using Voco</p>
+    
+    <!-- Record and upload buttons -->
+    <button class="button record-button" onclick="startRecording()">🎙️ Record Voice</button>
+    <button class="button stop-button" onclick="stopRecording()">⏹️ Stop Recording</button>
+    <input type="file" accept="audio/*" id="uploadInput" style="display:none;" onchange="uploadAudio()">
+    <button class="button upload-button" onclick="document.getElementById('uploadInput').click()">📁 Upload Audio</button>
+
+    <!-- Feedback and result display areas -->
+    <div id="feedback" class="feedback"></div>
+    <div id="result" class="result"></div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  © 2024 VoiceTAP.ai. All rights reserved.
+</div>
+<script>
+    let isRecording = false;
+
+    function startRecording() {
+        if (!isRecording) {
+            isRecording = true;
+            document.getElementById('feedback').innerText = "Recording... Please speak clearly.";
+            
+            // Placeholder: Replace this alert with actual recording logic
+            setTimeout(() => {
+                isRecording = false;
+                document.getElementById('feedback').innerText = "Recording complete. Analyzing...";
+                
+                // Simulate a call to the backend and display result
+                setTimeout(displayResult, 1500);
+            }, 3000); // Record for 3 seconds
+        }
+    }
+
+    function stopRecording() {
+        if (isRecording) {
+            isRecording = false; // Stop the recording
+            document.getElementById('feedback').innerText = "Recording stopped. Analyzing...";
+
+            // Simulate cleanup or finalization logic
+            // In a real scenario, you might want to stop the recording process here
+            // For example, if using a media recorder, you would call mediaRecorder.stop()
+
+            // Simulate a call to the backend and display result
+            setTimeout(displayResult, 1500);
+        } else {
+            document.getElementById('feedback').innerText = "No recording in progress to stop.";
+        }
+    }
+    function uploadAudio() {
+        const fileInput = document.getElementById('uploadInput');
+        if (fileInput.files.length > 0) {
+            document.getElementById('feedback').innerText = "File uploaded. Analyzing...";
+            
+            // Placeholder: Replace this with actual file upload and processing logic
+            setTimeout(displayResult, 1500);
+        }
+    }
+
+    function displayResult() {
+        // Example result, this should be replaced by actual data from the backend
+        const gender = Math.random() > 0.5 ? "Male" : "Female";
+        document.getElementById('result').innerText = `Predicted Gender: ${gender}`;
+        document.getElementById('result').style.display = "block";
+        document.getElementById('feedback').innerText = "";
+    }
+</script>
+</body>
+</html>
