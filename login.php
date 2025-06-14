@@ -11,8 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($res && mysqli_num_rows($res) === 1) {
     $user = mysqli_fetch_assoc($res);
     if (password_verify($pw, $user['password'])) {
+      $_SESSION['id']    = $user['id'];
       $_SESSION['name']  = $user['name'];
-      header('Location: dashboard.html');
+      header('Location: index(2).html');
       exit;
     }
   }
